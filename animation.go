@@ -13,38 +13,21 @@ type AnimatedString struct {
 }
 
 var (
-	// SpinnerStrings are the strings used to make a spinner.
-	SpinnerStrings = []string{`/`, `-`, `\`, `|`}
-
-	// ThrobberStrings are the strings used to make a throbber.
+	DefaultInterval = time.Millisecond * 250
+	SpinnerStrings  = []string{`/`, `-`, `\`, `|`}
+	SpinnerXStrings = []string{`+`, `x`}
+	SpinnerVStrings = []string{`v`, `<`, `^`, `>`}
 	ThrobberStrings = []string{`.`, `o`, `O`, `o`}
+	BalloonStrings  = []string{`.`, `o`, `O`, `@`, `*`, ` `}
+	PlatformStrings = []string{`_`, `-`}
 
-	// Spinner is a global instance of a spinner.
-	Spinner = NewDefaultSpinner()
-
-	// Throbber is a global instance of a throbber.
-	Throbber = NewDefaultThrobber()
+	Spinner  = NewAnimatedString(SpinnerStrings, DefaultInterval)
+	SpinnerX = NewAnimatedString(SpinnerXStrings, DefaultInterval)
+	SpinnerV = NewAnimatedString(SpinnerVStrings, DefaultInterval)
+	Throbber = NewAnimatedString(ThrobberStrings, DefaultInterval)
+	Balloon  = NewAnimatedString(BalloonStrings, DefaultInterval)
+	Platform = NewAnimatedString(PlatformStrings, DefaultInterval)
 )
-
-// NewDefaultSpinner creates a spinner that animates four times a second.
-func NewDefaultSpinner() *AnimatedString {
-	return NewSpinner(time.Millisecond * 250)
-}
-
-// NewSpinner creates a spinner that animates at the given interval.
-func NewSpinner(interval time.Duration) *AnimatedString {
-	return NewAnimatedString(SpinnerStrings, interval)
-}
-
-// NewDefaultThrobber creates a throbber that animates four times a second.
-func NewDefaultThrobber() *AnimatedString {
-	return NewThrobber(time.Millisecond * 250)
-}
-
-// NewThrobber creates a throbber that animates at the given interval.
-func NewThrobber(interval time.Duration) *AnimatedString {
-	return NewAnimatedString(ThrobberStrings, interval)
-}
 
 // NewAnimatedString makes an animated string with the given string list
 // (which animates left to right) and animation interval.
