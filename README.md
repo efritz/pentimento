@@ -16,41 +16,11 @@ This pattern can be adapted to show outstanding tasks, current external event pr
 or multiple progress bars (à la `docker pull`). The implementation uses ANSI codes, so
 beware of backing writers that do not support them.
 
-```go
-package main
-
-import (
-	"fmt"
-	"time"
-
-	"github.com/efritz/pentimento"
-)
-
-func main() {
-	fmt.Printf("Before\n")
-
-	pentimento.PrintProgress(func(p *pentimento.Printer) {
-		for i := 1; i <= 10; i++ {
-			content := pentimento.NewContent()
-			content.AddLine("[%s] a %d", pentimento.Throbber, i)
-			content.AddLine("[%s] b %d", pentimento.Spinner, i)
-			content.AddLine("[%s] c %d", pentimento.Throbber, i)
-			p.WriteContent(content)
-
-			<-time.After(time.Second / 2)
-		}
-
-		p.Reset()
-		p.WriteString("Done")
-	})
-
-	fmt.Printf("After\n")
-}
-```
+See the file `main.go` in the example directory of this project for a working example.
 
 The output of this example can be viewed here:
 
-[![asciicast](https://asciinema.org/a/nan3axRuk8QFSgABdFmGENoGE.png)](https://asciinema.org/a/nan3axRuk8QFSgABdFmGENoGE)
+[![asciicast](https://asciinema.org/a/7oF6KUK4Z8nvEoGMNvbrcPUxO.png)](https://asciinema.org/a/7oF6KUK4Z8nvEoGMNvbrcPUxO)
 
 ## License
 
