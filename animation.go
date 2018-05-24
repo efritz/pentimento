@@ -12,21 +12,40 @@ type AnimatedString struct {
 	start    time.Time
 }
 
-var (
-	DefaultInterval = time.Millisecond * 250
-	SpinnerStrings  = []string{`/`, `-`, `\`, `|`}
-	SpinnerXStrings = []string{`+`, `x`}
-	SpinnerVStrings = []string{`v`, `<`, `^`, `>`}
-	ThrobberStrings = []string{`.`, `o`, `O`, `o`}
-	BalloonStrings  = []string{`.`, `o`, `O`, `@`, `*`, ` `}
-	PlatformStrings = []string{`_`, `-`}
+const DefaultInterval = time.Millisecond * 250
 
-	Spinner  = NewAnimatedString(SpinnerStrings, DefaultInterval)
-	SpinnerX = NewAnimatedString(SpinnerXStrings, DefaultInterval)
-	SpinnerV = NewAnimatedString(SpinnerVStrings, DefaultInterval)
-	Throbber = NewAnimatedString(ThrobberStrings, DefaultInterval)
-	Balloon  = NewAnimatedString(BalloonStrings, DefaultInterval)
-	Platform = NewAnimatedString(PlatformStrings, DefaultInterval)
+var (
+	SpinnerStrings       = []string{"/", "-", "\\", "|"}
+	SpinnerXStrings      = []string{"+", "x"}
+	SpinnerVStrings      = []string{"v", "<", "^", ">"}
+	ThrobberStrings      = []string{".", "o", "O", "o"}
+	BalloonStrings       = []string{".", "o", "O", "@", "*", " "}
+	PlatformStrings      = []string{"_", "-"}
+	DotsStrings          = []string{".  ", ".. ", "...", "   "}
+	ScrollingDotsStrings = []string{".  ", ".. ", "...", " ..", "  .", "   "}
+	StarDotsStrings      = []string{"...", "*..", ".*.", "..*", "..."}
+	FlipStrings          = []string{"_", "_", "_", "-", "`", "'", "´", "-", "_", "_", "_"}
+	ToggleStrings        = []string{"=", "*", "-"}
+	DQPBStrings          = []string{"d", "q", "p", "b"}
+
+	BoundingBarStrings = []string{
+		"[    ]", "[=   ]", "[==  ]", "[=== ]", "[ ===]", "[  ==]", "[   =]",
+		"[    ]", "[   =]", "[  ==]", "[ ===]", "[=== ]", "[==  ]", "[=   ]",
+	}
+
+	Spinner       = NewAnimatedString(SpinnerStrings, DefaultInterval)
+	SpinnerX      = NewAnimatedString(SpinnerXStrings, DefaultInterval)
+	SpinnerV      = NewAnimatedString(SpinnerVStrings, DefaultInterval)
+	Throbber      = NewAnimatedString(ThrobberStrings, DefaultInterval)
+	Balloon       = NewAnimatedString(BalloonStrings, DefaultInterval)
+	Platform      = NewAnimatedString(PlatformStrings, DefaultInterval)
+	Dots          = NewAnimatedString(DotsStrings, DefaultInterval)
+	ScrollingDots = NewAnimatedString(ScrollingDotsStrings, DefaultInterval)
+	StarDots      = NewAnimatedString(StarDotsStrings, DefaultInterval)
+	Flip          = NewAnimatedString(FlipStrings, DefaultInterval)
+	Toggle        = NewAnimatedString(ToggleStrings, DefaultInterval)
+	DQPB          = NewAnimatedString(DQPBStrings, DefaultInterval)
+	BoundingBar   = NewAnimatedString(BoundingBarStrings, DefaultInterval)
 )
 
 // NewAnimatedString makes an animated string with the given string list
