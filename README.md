@@ -2,8 +2,8 @@
 
 [![GoDoc](https://godoc.org/github.com/efritz/pentimento?status.svg)](https://godoc.org/github.com/efritz/pentimento)
 [![Build Status](https://secure.travis-ci.org/efritz/pentimento.png)](http://travis-ci.org/efritz/pentimento)
-[![Code Coverage](http://codecov.io/github/efritz/pentimento/coverage.svg?branch=master)](http://codecov.io/github/efritz/pentimento?branch=master)
-[![Go Report Card](https://goreportcard.com/badge/github.com/efritz/pentimento)](https://goreportcard.com/report/github.com/efritz/pentimento)
+[![Maintainability](https://api.codeclimate.com/v1/badges/7adb5ac9e13bd0583f49/maintainability)](https://codeclimate.com/github/efritz/pentimento/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/7adb5ac9e13bd0583f49/test_coverage)](https://codeclimate.com/github/efritz/pentimento/test_coverage)
 
 Pentimento is a utility to help show progress events in the terminal.
 
