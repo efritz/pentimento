@@ -10,7 +10,7 @@ import (
 func main() {
 	fmt.Printf("Before\n")
 
-	pentimento.PrintProgress(func(p *pentimento.Printer) {
+	pentimento.PrintProgress(func(p *pentimento.Printer) error{
 		for i := 1; i <= 25; i++ {
 			content := pentimento.NewContent()
 			content.AddLine("(%2d) Spinner: %s", i, pentimento.Spinner)
@@ -33,6 +33,8 @@ func main() {
 
 		p.Reset()
 		p.WriteString("Done")
+
+		return nil
 	})
 
 	fmt.Printf("After\n")

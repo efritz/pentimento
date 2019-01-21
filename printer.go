@@ -37,12 +37,12 @@ var (
 // calls the function with a reference to the printer. The printer
 // is configured to refresh during the function call then stop once
 // it returns.
-func PrintProgress(f func(*Printer), configs ...ConfigFunc) {
+func PrintProgress(f func(*Printer) error, configs ...ConfigFunc) error {
 	config := getConfig(configs...)
 	p := &Printer{writer: config.writer}
 	p.Refresh(config.interval)
 	defer p.Stop()
-	f(p)
+	return f(p)
 }
 
 // NewStdoutPrinter creates a printer that writes to stdout.
