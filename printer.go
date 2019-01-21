@@ -107,6 +107,10 @@ func (p *Printer) Refresh(interval time.Duration) {
 
 	go func() {
 		for range ticker.C {
+			if p.previous == nil {
+				continue
+			}
+
 			p.mutex.Lock()
 			p.WriteContent(p.previous)
 			p.mutex.Unlock()
