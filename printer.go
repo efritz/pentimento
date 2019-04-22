@@ -1,6 +1,7 @@
 package pentimento
 
 import (
+	"bytes"
 	"io"
 	"os"
 	"strings"
@@ -84,14 +85,16 @@ func (p *Printer) WriteContent(content *Content) error {
 	s := content.String()
 	r := p.getResetSequence()
 	p.lines = strings.Count(s, "\n")
-	return writeAll(p.writer, []byte(r+s))
+	_, err := io.Copy(p.writer, bytes.NewReader([]byte(r+s)))
+	return err
 }
 
 // Reset clears the content written by the last call to WriteContent.
 func (p *Printer) Reset() error {
 	s := p.getResetSequence()
 	p.lines = 0
-	return writeAll(p.writer, []byte(s))
+	_, err := io.Copy(p.writer, bytes.NewReader([]byte(s)))
+	return err
 }
 
 // Refresh starts a goroutine that re-writes the last chunk of content
@@ -148,17 +151,4 @@ func getConfig(configs ...ConfigFunc) *printerConfig {
 	}
 
 	return config
-}
-
-func writeAll(w io.Writer, data []byte) error {
-	for len(data) > 0 {
-		n, err := w.Write(data)
-		if err != nil {
-			return err
-		}
-
-		data = data[n:]
-	}
-
-	return nil
 }
