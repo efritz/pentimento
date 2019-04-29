@@ -62,3 +62,9 @@ func NewAnimatedString(parts []string, interval time.Duration) *AnimatedString {
 func (ac *AnimatedString) String() string {
 	return ac.parts[int(time.Now().Sub(ac.start)/ac.interval)%len(ac.parts)]
 }
+
+
+// NewStaticString creates an animated string that only has a single frame.
+func NewStaticString(value string) *AnimatedString {
+	return NewAnimatedString([]string{value}, DefaultInterval)
+}
